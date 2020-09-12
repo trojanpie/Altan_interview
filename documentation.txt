@@ -1,0 +1,48 @@
+This is a restful API with the aim to offer an implementaion through which the user
+can stop pause or terminate the long running task
+
+
+I have basically divided the solution in 2 parts
+
+1. Upload
+
+This part deals with the uploading of CSV files in to an already existing database.
+For make it simple for usage I am not making simple get request with the all the paramneters already hard-coded
+but the code is such that it allows for flexibilty depending on the needs.
+
+So the file that would be uploaded is pap.csv
+
+The endpoints are 
+
+	1 /upload : This will start the uploading process. Since it was mentioned in the question it would only allow for 1 uploading process at a time.
+	2 /upload/pause:  This will pause an existing Uploading Process/
+	3. /upload/resume: This will resume a paused uploading Process
+	4. /upload/terminate: This will terminate a paused Uploading Process/
+	5. /upload/status: This will show the status of the UPloading Process
+
+
+2. Download
+
+This part deals with exporting a collection from Mongodb Database. Once again in this code we are accepting a get request and we are downloading a 
+single collection. We can add filters to the downloading process.
+
+The endpoints are
+
+  1. POST /download : This will start the downloading process. 
+  The post request can contain the parameters. 
+  if you want to get all the documents from Mongodb document then specify no parameters
+  if you want all the documents with gender as male - > 
+  		{
+  			"gender":"Male"
+  		}
+
+  2. /download/pause: This will pause the downloading the process
+  3. /download/resume: This will resume the paused downloading the process
+  4. /download/status: This will define the state of the procees. The status will also show the percentage of rows transferred/
+  5. /download/terminate: This will terminate the running download process
+  6. /download/file: This will start the downloading of the file 'out.csv' once the transfer of all the rows is finished.
+
+
+ The solution is simple and mainly focuses only on the aspect of pausing/resuming/terminating long running task by ensuring the data integrity of the database. The other aspects can be modified for dynamic interaction. I hope you like the solution.
+
+ Looking forward to hear from you regarding how this can be improved for better performance.
